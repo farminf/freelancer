@@ -27,13 +27,13 @@
     - returns all of the items
 - ``` POST /api/items```
     - adds items to db
-- ``` GET /api/item?from_ts={xxx}&to_ts={xxx}```
+- ``` GET /api/items?start={xxx}&end={xxx}```
     - returns all the items in period of time
-- ``` GET /api/item/{project}```
+- ``` GET /api/items?project={name of project}```
     - returns all the items for specific project
-- ``` DELETE /api/projects/{project}```
+- ``` DELETE /api/projects?project={name of project}```
     - for deleting one project
-- ``` DELETE /api/projects/{item}```
+- ``` DELETE /api/items?id={id}```
     - for deleting one item
 
 #### example of response to projects
