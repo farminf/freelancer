@@ -5,7 +5,7 @@ var helpers = {
 		return axiosAPI.get('/projects')
 				.catch(function (err) {console.warn('Error in call getProjects: ', err)})
 	},
-    getItems: function(){
+  getItems: function(){
 		return axiosAPI.get('/items')
 				.catch(function (err) {console.warn('Error in call getItems: ', err)})
 	},
@@ -13,16 +13,16 @@ var helpers = {
 		return axiosAPI.get('/items?start='+ from_ts + '&end=' + to_ts )
 				.catch(function (err) {console.warn('Error in call getByTime: ', err)})
 	},
-    getByProject: function(project_name){
+  getByProject: function(project_name){
 		return axiosAPI.get('/items?project='+ project_name )
 				.catch(function (err) {console.warn('Error in call getByProject: ', err)})
 	},
-    postProject:function(project_name){
+  postProject:function(project_name){
 		return axiosAPI.post('/projects' , {"name":project_name})
 				.catch(function (err) {console.warn('Error in call postProject: ', err)})
 	},
-    postItem:function(project_name, start, end ){
-		return axiosAPI.get('/items' , {"project":project_name, "start":start, "end":end})
+  postItem:function(project_name, start, end ){
+		return axiosAPI.post('/items' , {"project":project_name, "start":start, "end":end})
 				.catch(function (err) {console.warn('Error in call postItem: ', err)})
 	}
 }

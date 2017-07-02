@@ -64,7 +64,7 @@ def add_item():
 def delete_project():
 	data = mongo.db.projects
 	project = request.args.get("project")
-	deleted_count = data.delete_many({"name" : str(project)})
+	deleted_count = data.delete_many({})
 	return jsonify({'result' : 'success'})
 
 @app.route('/api/items', methods=['DELETE'])
