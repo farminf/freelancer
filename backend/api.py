@@ -2,17 +2,23 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
-from flask_pymongo import PyMongo
+
+from pymongo import MongoClient
 from flask_cors import CORS, cross_origin
 import requests
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['MONGO_DBNAME'] = 'freelancer' 
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/freelancer'
+#app.config['MONGO_DBNAME'] = 'freelancer' 
+#app.config['MONGO_URI'] = 'mongodb://0.0.0.0:27017/freelancer'
+client = MongoClient(
+    os.environ['DB_PORT_27017_TCP_ADDR'],
+    27017)
+mongo = client.freelancer
 
-mongo = PyMongo(app)
+#mongo = PyMongo(app)
 
 @app.route('/api/projects', methods=['GET'])
 def get_all_projects():
@@ -61,7 +67,7 @@ def add_item():
 	return jsonify({'result' : output})
 
 @app.route('/api/projects', methods=['DELETE'])
-def delete_project():
+def delete_project():DB_PORT_27017_TCP_ADDR
 	data = mongo.db.projects
 	project = request.args.get("project")
 	deleted_count = data.delete_many({})
