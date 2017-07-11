@@ -20,6 +20,8 @@ class ReportContainer extends Component {
         this.onChangeEndTime = this.onChangeEndTime.bind(this);
         this.handleClickFilterByProject = this.handleClickFilterByProject.bind(this)
         this.handleClickFilterByTime = this.handleClickFilterByTime.bind(this)
+        this.handleClickRefresh = this.handleClickRefresh.bind(this)
+
 
     }
 
@@ -80,6 +82,11 @@ class ReportContainer extends Component {
 	    	}.bind(this))
     }
     
+    handleClickRefresh(){
+        this.updateItems();
+        this.updateProjects();
+    }
+
     render() {
         var itemProjectSelectOptions = []
         for(var i in this.state.projects){
@@ -93,12 +100,15 @@ class ReportContainer extends Component {
                 <PanelWrapper header='Report' size='col-sm-12'>
                     <div className="panel-body">
                         <h3>Filtering options</h3>
+                        
                         <div className="input-group">
+                            
                                 <select id="project_select" className="form-control"  ref={select => { this.select = select }}>
                                     {itemProjectSelectOptions}
                                 </select>
                             <span className="input-group-btn">
                                 <button className="btn btn-success" type="submit" onClick={this.handleClickFilterByProject} >Filter By Project</button>
+                                 <button className="btn btn-error" type="submit" onClick={this.handleClickRefresh} >Refresh</button>
                             </span>
                         </div>
                         <div className="input-group">    
@@ -108,6 +118,7 @@ class ReportContainer extends Component {
                                 <button className="btn btn-success" type="submit" onClick={this.handleClickFilterByTime} >Filter By Time</button>
                             </span>
                         </div>
+                           
                     </div>
                     <DataTable  dataArray={this.state.items}/>
                 </PanelWrapper>

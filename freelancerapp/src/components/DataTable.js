@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import PanelWrapper from './PanelWrapper'
-import APIHelper from "../util/APIHelper";
-import Datetime from 'react-datetime';
-import ReactDOM from 'react-dom'
 
 class DataTable extends Component {
     constructor(props) {
@@ -47,8 +42,6 @@ class DataTable extends Component {
     }
 }
 
-DataTable.propTypes = {
 
-};
 
 export default DataTable;

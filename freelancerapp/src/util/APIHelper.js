@@ -24,6 +24,10 @@ var helpers = {
   postItem:function(project_name, start, end ){
 		return axiosAPI.post('/items' , {"project":project_name, "start":start, "end":end})
 				.catch(function (err) {console.warn('Error in call postItem: ', err)})
+	},
+	deleteProject:function(project_name){
+		return axiosAPI.delete('/projects?project=' + project_name )
+				.catch(function (err) {console.warn('Error in call deleteProject: ', err)})
 	}
 }
 

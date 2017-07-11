@@ -5,6 +5,7 @@ import APIHelper from "../util/APIHelper";
 import Datetime from 'react-datetime';
 import ReactDOM from 'react-dom';
 import DataTable from './DataTable';
+import DeleteButton from './DeleteButton'
 
 class InsertContainer extends Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class InsertContainer extends Component {
         this.onChangeStartTime = this.onChangeStartTime.bind(this);
         this.onChangeEndTime = this.onChangeEndTime.bind(this);
         this.handleClickItemCreate = this.handleClickItemCreate.bind(this)
+        this.onDeleteProject = this.onDeleteProject.bind(this)
     }
 
     componentWillMount() {
@@ -82,12 +84,22 @@ class InsertContainer extends Component {
             this.updateItems()
         }.bind(this))
     }
+
+    onDeleteProject(index){
+        var project = this.state.projects[index].name;
+        APIHelper.deleteProject(project)
+        .then(function(result){
+            this.updateProjects()
+            this.updateItems()
+        }.bind(this))
+        
+    }
     
     render() {
         var projectsContent = []
         var itemProjectSelectOptions = []
         for(var i in this.state.projects){
-            projectsContent.push(<tr><td>{this.state.projects[i].name}</td></tr>)
+            projectsContent.push(<tr><td>{this.state.projects[i].name}</td><td><DeleteButton onClick={this.onDeleteProject} index={i} projects={this.state.projects} /></td></tr>)
             itemProjectSelectOptions.push(<option>{this.state.projects[i].name}</option>)
         }
         
@@ -128,6 +140,7 @@ class InsertContainer extends Component {
                         <thead>
                             <tr>
                                 <th>Project Names</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
