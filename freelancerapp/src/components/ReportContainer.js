@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import MainContainer from './MainContainer'
 import PanelWrapper from './PanelWrapper'
 import APIHelper from "../util/APIHelper";
 import Datetime from 'react-datetime';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import DataTable from './DataTable';
+
 
 
 class ReportContainer extends Component {
@@ -80,16 +81,11 @@ class ReportContainer extends Component {
     }
     
     render() {
-        var itemsContent = []
         var itemProjectSelectOptions = []
         for(var i in this.state.projects){
             itemProjectSelectOptions.push(<option>{this.state.projects[i].name}</option>)
         }
-        for(var i in this.state.items){
-            var start = new Date(Number(this.state.items[i].start)*1000)
-            var end = new Date(Number(this.state.items[i].end)*1000)
-            itemsContent.push(<tr><td>{this.state.items[i].project}</td><td>{String(start)}</td><td>{String(end)}</td></tr>)
-        }
+        
 
 
         return (
@@ -113,18 +109,7 @@ class ReportContainer extends Component {
                             </span>
                         </div>
                     </div>
-                    <table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Project</th>
-                                <th>From</th>
-                                <th>To</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {itemsContent}
-                        </tbody>
-                    </table>
+                    <DataTable  dataArray={this.state.items}/>
                 </PanelWrapper>
 
             </MainContainer>

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import MainContainer from './MainContainer'
 import PanelWrapper from './PanelWrapper'
 import APIHelper from "../util/APIHelper";
-import moment from "moment"
 import Datetime from 'react-datetime';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import DataTable from './DataTable';
 
 class InsertContainer extends Component {
     constructor(props) {
@@ -91,13 +90,7 @@ class InsertContainer extends Component {
             projectsContent.push(<tr><td>{this.state.projects[i].name}</td></tr>)
             itemProjectSelectOptions.push(<option>{this.state.projects[i].name}</option>)
         }
-        var itemsContent = []
         
-        for(var i in this.state.items){
-            var start = new Date(Number(this.state.items[i].start)*1000)
-            var end = new Date(Number(this.state.items[i].end)*1000)
-            itemsContent.push(<tr><td>{this.state.items[i].project}</td><td>{String(start)}</td><td>{String(end)}</td></tr>)
-        }
 
         return (
             <MainContainer>
@@ -117,19 +110,9 @@ class InsertContainer extends Component {
                         </div>
                             
                     </div>
-                    <table className="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Project</th>
-                                <th>From</th>
-                                <th>To</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {itemsContent}
-                        </tbody>
-                    </table>
+                    <DataTable  dataArray={this.state.items}/>
                 </PanelWrapper>
+                
 
                 <PanelWrapper header='Insert Project' size='col-sm-3'>
                     <div className="panel-body">
