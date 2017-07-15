@@ -32,7 +32,7 @@
 - ``` GET /api/items?project={name of project}```
     - returns all the items for specific project
 - ``` DELETE /api/projects?project={name of project}```
-    - for deleting one project
+    - for deleting one project (it will delete all items with that project)
 - ``` DELETE /api/items?id={id}```
     - for deleting one item
 

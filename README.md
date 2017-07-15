@@ -25,3 +25,5 @@
      sudo docker-compose build
      sudo docker-compose up
     ```
+Note: change the ip address of mongo instane in api.py from '0.0.0.0' to 'db'
+

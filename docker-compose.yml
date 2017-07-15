@@ -8,7 +8,7 @@ backend:
   links:
     - db
   environment:
-      - DB_PORT_27017_TCP_ADDR=mongodb://db:27017
+      - db=0.0.0.0
 db:
   image: mongo:3.4.5
 
