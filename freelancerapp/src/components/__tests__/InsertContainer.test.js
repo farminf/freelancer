@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../../App';
-import TitleBar from '../TitleBar';
-import ReportContainer from '../ReportContainer'
-import {shallow} from 'enzyme';
+import InsertContainer from '../InsertContainer';
+import DataTable from '../DataTable';
+import {
+  shallow
+} from 'enzyme';
 import axios from '../../util/axiosAPI';
 import MockAdapter from 'axios-mock-adapter';
 
 
-it('renders without crashing', () => {
 
-  let mock = new MockAdapter(axios);
+
+describe('getProjects api call ', () => {
+  it('Should return data from response', () => {
+    let mock = new MockAdapter(axios);
 
     mock.onGet('/projects').reply(200, {
       data: {
@@ -41,15 +44,12 @@ it('renders without crashing', () => {
         ]
       }
     });
-    
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
+
+    shallow(<InsertContainer/>);
+  });
+
+  it('renders without crashing', () => {
+    shallow( <DataTable /> );
+  });
+
 });
-
-it('renders without crashing', () => {
-  shallow(<App />);
-  shallow(<TitleBar />);
-});
-
-
- 
