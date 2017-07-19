@@ -14,7 +14,7 @@
     ``` bash
     virtualenv -p python3 env
     source env/bin/activate
-    (env)$ pip install Flask-PyMongo flask_cors requests
+    (env)$ pip install pymongo flask flask_cors requests
     ```
 
 ### API Architecture
