@@ -1,4 +1,4 @@
-# Empatica Dummy Backend
+# FreeLancer Dummy Backend
 
 ### Requirement
 - MongoDB
